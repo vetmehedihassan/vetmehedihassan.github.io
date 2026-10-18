@@ -1,0 +1,27 @@
+name: admin-ci
+
+on:
+  push:
+    branches: [staging, main]
+    paths:
+      - "apps/admin/**"
+      - "packages/**"
+  pull_request:
+    paths:
+      - "apps/admin/**"
+      - "packages/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint:admin
+      - run: pnpm type-check:admin
+      - run: pnpm build:admin

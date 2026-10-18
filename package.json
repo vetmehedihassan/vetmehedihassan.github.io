@@ -1,0 +1,48 @@
+{
+  "name": "vet-mehedi-hassan-platform",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.30.3",
+  "scripts": {
+    "prepare": "husky",
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=web",
+    "dev:admin": "turbo run dev --filter=admin",
+    "dev:api": "turbo run dev --filter=api",
+    "build": "turbo run build",
+    "build:web": "turbo run build --filter=web",
+    "build:admin": "turbo run build --filter=admin",
+    "build:api": "turbo run build --filter=api",
+    "lint": "turbo run lint",
+    "lint:web": "turbo run lint --filter=web",
+    "lint:admin": "turbo run lint --filter=admin",
+    "lint:api": "turbo run lint --filter=api",
+    "type-check": "turbo run type-check",
+    "type-check:web": "turbo run type-check --filter=web",
+    "type-check:admin": "turbo run type-check --filter=admin",
+    "type-check:api": "turbo run type-check --filter=api",
+    "test": "turbo run test",
+    "test:api": "turbo run test --filter=api"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "lint-staged": {
+    "apps/web/**/*.{ts,tsx}": [
+      "pnpm --filter web lint:fix"
+    ],
+    "apps/admin/**/*.{ts,tsx}": [
+      "pnpm --filter admin lint:fix"
+    ],
+    "apps/api/**/*.ts": [
+      "pnpm --filter api lint:fix"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}
