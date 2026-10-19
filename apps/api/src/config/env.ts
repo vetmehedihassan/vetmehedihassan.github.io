@@ -1,7 +1,8 @@
 import 'dotenv/config';
 
 function required(name: string, fallback?: string): string {
-  const value = process.env[name] ?? fallback;
+  const raw = process.env[name];
+  const value = raw && raw.length > 0 ? raw : fallback;
   if (value === undefined) {
     throw new Error(`Missing required env var: ${name}`);
   }

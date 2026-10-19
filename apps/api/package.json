@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
+    "seed": "ts-node src/scripts/seed.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
     "lint": "eslint src --ext .ts",
